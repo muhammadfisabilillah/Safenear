@@ -58,6 +58,8 @@ export interface CountryProfile {
     note?: string;
   };
   rightsNotes: RightsNote[];
+  /** Sumber verifikasi untuk saluran & hak (opsional, tapi dianjurkan). */
+  sources?: { label: string; url: string }[];
   disclaimer?: string;
 }
 

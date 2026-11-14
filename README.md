@@ -24,7 +24,7 @@ Bukan pengganti polisi/kedutaan/pengacara. Bukan layanan darurat. Bila dalam bah
 - ✅ Kode inti: `src/lib/poi/{types,normalize}.ts`
 - ✅ Script: `scripts/fetch-poi.ts`, `scripts/validate-bundle.mjs`, `scripts/nearest-demo.mjs`
 - ✅ **Data asli** (OSM, ODbL): `data/bundles/US-houston.json` — 27 POI (8 polisi, 6 RS, 6 pemadam, 6 pengadilan, 1 Konsulat Jenderal RI)
-- ✅ Profil kewarganegaraan: `data/profiles/ID.json`
+- ✅ Profil kewarganegaraan: `data/profiles/{ID,PH,BD,NP}.json` (hotline resmi terverifikasi)
 - ⬜ UI Next.js + MapLibre (belum dibangun — mulai dari `docs/ROADMAP.md` T0)
 
 Buktinya:

@@ -1,0 +1,30 @@
+{
+  "iso": "BD",
+  "name": "Bangladesh",
+  "flag": "🇧🇩",
+  "languages": ["bn", "en"],
+  "sources": [
+    { "label": "BMET — Annual Report (Probashi Bondhu call center)", "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-bmet/2024/12/8b39deed28f0405e90502a3fd758e29a.pdf" },
+    { "label": "OEP — Overseas Employment Platform (hotline)", "url": "https://www.oep.gov.bd/" }
+  ],
+  "sovereignChannels": [
+    { "label": "BMET Probashi Bondhu Call Center", "kind": "phone", "value": "+8801784333333", "note": "Bureau of Manpower, Employment and Training — bantuan untuk migran." },
+    { "label": "BMET Probashi Bondhu (alternatif)", "kind": "phone", "value": "+8801794333333" },
+    { "label": "BMET Dhaka", "kind": "phone", "value": "+88029334888" },
+    { "label": "OEP Hotline", "kind": "phone", "value": "09614445271", "url": "https://www.oep.gov.bd/", "note": "Overseas Employment Platform." }
+  ],
+  "consulateStrategy": {
+    "osmQuery": "nwr[\"office\"=\"diplomatic\"][\"country\"=\"BD\"]",
+    "osmQueryAlt": "nwr[\"amenity\"=\"embassy\"][\"country\"=\"BD\"]",
+    "officialDirectoryUrl": "https://www.bmet.gov.bd",
+    "note": "BMET/DEMO tersedia di negara tujuan utama; cek direktori resmi."
+  },
+  "rightsNotes": [
+    {
+      "title": "Hak konsuler saat ditangkap/ditahan",
+      "body": "Pasal 36 Konvensi Wina 1963 berlaku: otoritas wajib memberitahu hakmu menghubungi konsulat 'tanpa penundaan'.",
+      "source": "https://legal.un.org/avl///ha/vccr/vccr.html"
+    }
+  ],
+  "disclaimer": "SAFE NEAR bukan layanan darurat dan bukan nasihat hukum. Bila dalam bahaya nyawa, hubungi nomor darurat lokal."
+}

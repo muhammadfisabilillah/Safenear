@@ -24,7 +24,7 @@ Legenda status: `[ ]` belum · `[~]` progres · `[x]` selesai + terbukti
 ### T2 — Skema data + validasi
 - [ ] `src/lib/poi/types.ts` (Poi, Category, CountryProfile, UserPrefs, IncidentReport, PoiBundle).
 - [ ] zod schema untuk semua tipe + normalisasi OSM (`normalizeOsm`).
-- [ ] `data/profiles/ID.json` (lengkap, terverifikasi).
+- [ ] `data/profiles/{ID,PH,BD,NP}.json` (lengkap, hotline resmi terverifikasi).
 - **AC:** test unit normalisasi lulus (kasus: node, way/relation pakai `center`, nama kosong, telepon tak valid).
 
 ### T3 — Ingest POI

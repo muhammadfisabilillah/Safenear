@@ -644,7 +644,7 @@ safe-near/
 **Minggu 1 — Fondasi + data (T0–T4)**
 - T0 Setup repo, Next.js, TS, Tailwind, ESLint, Vitest.
 - T1 PWA shell + Workbox + manifest + i18n (id/en).
-- T2 Skema data + types + zod + profile ID + bundle kosong.
+- T2 Skema data + types + zod + profil ID/PH/BD/NP + bundle Houston (asli).
 - T3 Script fetch POI Overpass + normalisasi + simpan JSON.
 - T4 Onboarding (kewarganegaraan/negara/bahasa) + prefs store.
 - **DoD M1:** app berjalan, onboarding tersimpan, data POI Houston terkuras dari OSM, build hijau.
@@ -746,18 +746,27 @@ safe-near/
 
 ---
 
-## 26. Asumsi yang perlu dikonfirmasi pemilik
+## 26. Keputusan final (dikunci 14 Nov 2026)
 
-| # | Asumsi | Perlu konfirmasi? |
-|---|---|---|
-| A1 | Nama proyek "SAFE NEAR" | Ya (cek domain/trademark) |
-| A2 | Kota pilot: Houston (AS) + 1 kota Asia (mis. Kuala Lumpur) | Ya |
-| A3 | Kewarganegaraan MVP: ID, PH, MA (profile) | Ya |
-| A4 | Navigasi default Google Maps URL; OSRM opsional | Ya |
-| A5 | Tidak ada LLM di MVP (fase 2) | Ya |
-| A6 | Lisensi kode MIT | Ya |
-| A7 | Waktu 4 minggu penuh | Ya |
-| A8 | Data OSM cukup di kota pilot | Ya (uji coba dulu) |
+| # | Keputusan | Nilai final | Catatan |
+|---|---|---|---|
+| A1 | Nama | **SAFE NEAR** | final |
+| A2 | Kota pilot | **Houston (AS)** sebagai pilot #1 | data asli 27 POI sudah ada; kota tambahan cukup menambah bundle |
+| A3 | Profil kewarganegaraan MVP | **ID, PH, BD, NP** (terverifikasi) + fallback generik | hotline resmi: ID Peduli WNI; PH DMW/OWWA 1348; BD BMET Probashi Bondhu; NP FEB 16600150005 |
+| A4 | Navigasi | **Google Maps URLs `api=1` (default)** + garis lurus offline; **OSRM self-host opsional** | gratis, tanpa API key |
+| A5 | LLM di MVP | **TIDAK ADA LLM** | triase pakai aturan deterministik; LLM = fase 2 (stretch) |
+| A6 | Lisensi kode | **MIT** | final |
+| A7 | Waktu | 4 minggu | final |
+| A8 | Data OSM | cukup di Houston (27 POI) | terverifikasi |
+
+### A5 — Kenapa MVP tanpa LLM (penjelasan)
+
+LLM menjanjikan triase otomatis dari teks bebas, tapi:
+1. **Risiko hallucinasi berbahaya** untuk konteks keselamatan/hukum (saran salah bisa membahayakan).
+2. **Model ~1,5 GB** + butuh WebGPU (fallback WASM lambat di HP menengah) -> UX berisiko.
+3. **Effort besar**: prompt engineering, evaluasi, manajemen model offline.
+
+Deterministik (pilih kategori + urgensi) lebih **aman, instan, offline, dan bisa di-demo-kan tanpa risiko**. LLM ditambahkan di **fase 2** bila MVP sudah hijau dan ada waktu (ADR-008).
 
 ---
 

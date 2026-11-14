@@ -149,7 +149,7 @@ Contoh `ID.json` (lihat §10.7 dokumen induk). Aturan:
 - `rightsNotes` wajib punya `source`.
 - Jangan mengisi nomor/hak yang tidak terverifikasi; pakai placeholder `"—"` + catatan.
 
-Profil MVP: `ID`, `PH`, `MA` (usulan — konfirmasi pemilik).
+Profil MVP: `ID`, `PH`, `BD`, `NP` — semua hotline resmi terverifikasi (DMW/OWWA 1348; BMET Probashi Bondhu; FEB 16600150005). Lihat field `sources` di tiap profil.
 
 ---
 
@@ -188,9 +188,9 @@ Code: MIT — © 2026 Muhammad
 
 ---
 
-## 10. Pertanyaan/ Keputusan data (untuk pemilik)
+## 10. Keputusan data (dikunci 14 Nov 2026)
 
-1. Kota pilot mana yang dipakai? (usulan: Houston + Kuala Lumpur)
-2. Profil kewarganegaraan MVP? (usulan: ID, PH, MA)
-3. Apakah bundle di-commit ke repo atau di-host di R2? (usulan: R2 + unduh saat runtime)
-4. Seberapa sering data di-refresh? (usulan: per rilis, bukan runtime)
+1. Kota pilot: **Houston (AS)** (bundle asli sudah ada). Kota tambahan = tambah bundle.
+2. Profil MVP: **ID, PH, BD, NP** (hotline resmi terverifikasi).
+3. Bundle: di-commit ke repo (contoh) + bisa di-host di R2 untuk runtime.
+4. Refresh: per rilis, bukan runtime.
