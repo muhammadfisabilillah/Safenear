@@ -1,0 +1,49 @@
+{
+  "name": "safe-near",
+  "version": "0.1.0",
+  "private": true,
+  "description": "SAFE NEAR — peta & pendamping keselamatan warga asing (offline-first, 100% gratis).",
+  "license": "MIT",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "test": "vitest run",
+    "data:fetch": "tsx scripts/fetch-poi.ts",
+    "data:validate": "node scripts/validate-bundle.mjs",
+    "data:demo": "node scripts/nearest-demo.mjs"
+  },
+  "dependencies": {
+    "@react-pdf/renderer": "^4.3.0",
+    "@turf/nearest-point": "^7.1.0",
+    "@turf/turf": "^7.1.0",
+    "idb": "^8.0.0",
+    "i18next": "^24.2.0",
+    "maplibre-gl": "^4.7.1",
+    "next": "14.2.15",
+    "pmtiles": "^3.2.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-i18next": "^15.1.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@testing-library/react": "^16.0.1",
+    "@types/node": "^22.7.5",
+    "@types/react": "^18.3.11",
+    "@types/react-dom": "^18.3.1",
+    "autoprefixer": "^10.4.20",
+    "eslint": "^8.57.1",
+    "eslint-config-next": "14.2.15",
+    "postcss": "^8.4.47",
+    "tailwindcss": "^3.4.13",
+    "tsx": "^4.19.1",
+    "typescript": "^5.6.3",
+    "vitest": "^2.1.2",
+    "workbox-build": "^7.1.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

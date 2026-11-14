@@ -1,0 +1,42 @@
+{
+  "iso": "ID",
+  "name": "Indonesia",
+  "flag": "🇮🇩",
+  "languages": ["id", "en"],
+  "sovereignChannels": [
+    {
+      "label": "Peduli WNI (Kemenlu RI)",
+      "kind": "phone",
+      "value": "+62-812-9007-0027",
+      "url": "https://peduliwni.kemlu.go.id",
+      "hours": "Layanan pelindungan WNI di luar negeri",
+      "note": "SLA: 1 hari kalender untuk kasus khusus; 5 hari kerja untuk kasus umum."
+    },
+    {
+      "label": "Email Direktorat PWNI",
+      "kind": "email",
+      "value": "pelindunganwni@kemlu.go.id",
+      "note": "Kementerian Luar Negeri RI — Direktorat Pelindungan WNI."
+    },
+    {
+      "label": "Portal Peduli WNI",
+      "kind": "web",
+      "value": "https://peduliwni.kemlu.go.id",
+      "note": "Lapor diri, pengaduan, dan layanan konsuler."
+    }
+  ],
+  "consulateStrategy": {
+    "osmQuery": "nwr[\"office\"=\"diplomatic\"][\"country\"=\"ID\"]",
+    "osmQueryAlt": "nwr[\"amenity\"=\"embassy\"][\"country\"=\"ID\"]",
+    "officialDirectoryUrl": "https://peduliwni.kemlu.go.id/",
+    "note": "Di Houston, konsulat terdeteksi via office=diplomatic + country=ID. Fallback ke direktori resmi."
+  },
+  "rightsNotes": [
+    {
+      "title": "Hak konsuler saat ditangkap/ditahan",
+      "body": "Pasal 36 Konvensi Wina 1963: otoritas negara tuan rumah wajib memberitahumu 'tanpa penundaan' hak untuk menghubungi konsulat negaramu. Kamu berhak dihubungi dan dikunjungi konsuler.",
+      "source": "https://legal.un.org/avl///ha/vccr/vccr.html"
+    }
+  ],
+  "disclaimer": "SAFE NEAR bukan layanan darurat dan bukan nasihat hukum. Bila dalam bahaya nyawa, hubungi nomor darurat lokal."
+}
