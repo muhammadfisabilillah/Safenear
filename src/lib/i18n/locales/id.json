@@ -129,6 +129,7 @@
     "harassed": "Diganggu di Ruang Publik",
     "harassedBody": "Anda berhak merasa aman di ruang publik. Catat kejadian (waktu, tempat, deskripsi). Hubungi polisi jika kejahatan. Hubungi kedutaan untuk bantuan konsuler.",
     "source": "Sumber",
+    "sovereignChannels": "Saluran kedaulatan",
     "disclaimer": "Bukan nasihat hukum. Hanya informasi. Konsultasi ke pengacara/otoritas resmi."
   },
   "report": {
@@ -192,7 +193,11 @@
     "ready": "Siap pakai offline",
     "storageUsed": "Penyimpanan terpakai",
     "clearAll": "Hapus semua data",
-    "clearAllConfirm": "Hapus SEMUA data lokal? (preferensi, laporan, unduhan)"
+    "clearAllConfirm": "Hapus SEMUA data lokal? (preferensi, laporan, unduhan)",
+    "tileNote": "Tile peta di-cache otomatis oleh service worker saat area dibuka online; tempat (POI) diunduh eksplisit di sini.",
+    "downloadDone": "Area siap dipakai offline",
+    "clearAllDone": "Semua data lokal dihapus.",
+    "bytes": "byte"
   },
   "settings": {
     "title": "Pengaturan",
@@ -205,6 +210,8 @@
     "deleteAllConfirm": "Ini menghapus preferensi, laporan, dan area unduhan. Tidak bisa dibatalkan.",
     "version": "Versi",
     "openSource": "Open source (MIT)",
+    "saved": "Pengaturan tersimpan.",
+    "privacyNote": "Lokasi, laporan, dan bukti hanya tersimpan di perangkat ini. Tidak ada akun, tidak ada pengiriman ke server.",
     "attributions": "Atribusi"
   },
   "about": {
@@ -220,7 +227,8 @@
     "rightsContent": "Konten hak: Konvensi Wina Hubungan Konsuler (PBB) / Kemenlu PWNI",
     "codeLicense": "Kode: Lisensi MIT — © 2026 Muhammad",
     "disclaimer": "SAFE NEAR bukan layanan darurat dan bukan nasihat hukum. Bila dalam bahaya nyawa, hubungi nomor darurat lokal.",
-    "contact": "Kontak / Isu: GitHub"
+    "contact": "Kontak / Isu: GitHub",
+    "pilot": "Kota pilot"
   },
   "errors": {
     "generic": "Terjadi kesalahan. Silakan coba lagi.",

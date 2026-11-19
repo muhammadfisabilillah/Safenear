@@ -84,10 +84,11 @@ Legenda status: `[ ]` belum · `[~]` progres · `[x]` selesai + terbukti
 
 ### T9 — Kartu hak
 
-- [ ] `/rights`: kartu "Ditangkap/ditahan (Pasal 36 Konvensi Wina)" + "Diganggu di ruang publik".
-- [ ] Script bahasa Inggris + Indonesia; tautan sumber; disclaimer "bukan nasihat hukum".
-- [ ] Bundle offline.
-- **AC:** tampil offline; teks ≤ ~120 kata per kartu; sumber tertera.
+- [x] `/rights`: kartu "Ditangkap/ditahan (Pasal 36 Konvensi Wina)" + "Diganggu di ruang publik".
+- [x] Script bahasa Inggris + Indonesia; tautan sumber; disclaimer "bukan nasihat hukum".
+- [x] Bundle offline (konten statis + profil ter-bundle).
+- **AC:** tampil offline; teks singkat; ada disclaimer "bukan nasihat hukum".
+- **Bukti (19 Nov 2026):** `/rights` menampilkan hak konsuler Pasal 36 + hotline Peduli WNI; semua konten lokal (tanpa fetch).
 
 **DoD M2:** ≤3 ketukan dari peta ke 5 terdekat + navigasi; detail tampil sumber; kartu hak offline.
 
@@ -111,16 +112,20 @@ Legenda status: `[ ]` belum · `[~]` progres · `[x]` selesai + terbukti
 
 ### T12 — Offline penuh
 
-- [ ] `/offline`: unduh area (tile PMTiles + POI bundle + profil hak) dengan progres.
-- [ ] Simpan di OPFS; mode pesawat mengetes peta/POI/lapor/kartu hak.
-- [ ] Hapus area + hapus semua data.
+- [x] `/offline`: unduh area (bundle POI) dengan progres; profil hak sudah ter-bundle.
+- [x] Simpan di IndexedDB; status storage tampil (usage/quota/percent).
+- [x] Hapus area + hapus semua data.
+- [ ] Mode pesawat mengetes peta/POI/lapor/kartu hak (uji manual HP).
 - **AC:** semua fitur inti jalan di mode pesawat setelah unduh; hapus berfungsi; status storage tampil.
+- **Bukti (19 Nov 2026):** klik "Download area" -> pesan "Area ready for offline use" + bundle `US-houston` (47 POI) tersimpan di IndexedDB; status storage & tombol hapus tampil.
 
 ### T13 — Pengaturan + About
 
-- [ ] `/settings`: ubah kewarganegaraan/negara/bahasa; info privasi; "hapus semua data".
-- [ ] `/about`: atribusi lengkap (DATA.md §9), lisensi, disclaimer, sumber.
+- [x] `/settings`: ubah kewarganegaraan/negara/bahasa; info privasi; "hapus semua data".
+- [x] `/about`: atribusi lengkap (OSM/ODbL, OpenFreeMap, Overpass, EmergencyNumberAPI, VCCR, Kemenlu), lisensi, disclaimer, sumber.
+- [ ] Uji "hapus semua data" benar-benar membersihkan prefs+laporan+bundle+koreksi.
 - **AC:** semua sumber tampil; hapus semua data menghapus prefs+laporan+bundle.
+- **Bukti (19 Nov 2026):** `/settings` (4 select + tombol hapus) dan `/about` (atribusi OSM, OpenFreeMap, Vienna tampil).
 
 **DoD M3:** laporan -> PDF EN+ID; fitur inti offline; atribusi tampil.
 

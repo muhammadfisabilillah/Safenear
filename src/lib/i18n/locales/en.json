@@ -129,6 +129,7 @@
     "harassed": "Harassed in Public",
     "harassedBody": "You have the right to be safe in public spaces. Document what happened (time, place, description). Contact police if a crime occurred. Contact your embassy for consular assistance.",
     "source": "Source",
+    "sovereignChannels": "Sovereign channels",
     "disclaimer": "Not legal advice. For information only. Consult a lawyer or official authority."
   },
   "report": {
@@ -192,7 +193,11 @@
     "ready": "Ready for offline use",
     "storageUsed": "Storage used",
     "clearAll": "Clear all data",
-    "clearAllConfirm": "Delete ALL local data? (prefs, reports, downloads)"
+    "clearAllConfirm": "Delete ALL local data? (prefs, reports, downloads)",
+    "tileNote": "Map tiles are cached automatically by the service worker when an area is opened online; places (POI) are downloaded explicitly here.",
+    "downloadDone": "Area ready for offline use",
+    "clearAllDone": "All local data cleared.",
+    "bytes": "bytes"
   },
   "settings": {
     "title": "Settings",
@@ -205,6 +210,8 @@
     "deleteAllConfirm": "This removes preferences, reports, and downloaded areas. Cannot be undone.",
     "version": "Version",
     "openSource": "Open source (MIT)",
+    "saved": "Settings saved.",
+    "privacyNote": "Location, reports, and evidence stay on this device only. No account, no server uploads.",
     "attributions": "Attributions"
   },
   "about": {
@@ -220,7 +227,8 @@
     "rightsContent": "Rights content: Vienna Convention on Consular Relations (UN) / Kemenlu PWNI",
     "codeLicense": "Code: MIT License — © 2026 Muhammad",
     "disclaimer": "SAFE NEAR is not an emergency service and not legal advice. If in immediate danger, call local emergency first.",
-    "contact": "Contact / Issues: GitHub"
+    "contact": "Contact / Issues: GitHub",
+    "pilot": "Pilot cities"
   },
   "errors": {
     "generic": "Something went wrong. Please try again.",
