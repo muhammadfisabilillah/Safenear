@@ -64,12 +64,13 @@ export interface CountryProfile {
 }
 
 export interface UserPrefs {
-  nationality: string;
-  hostCountry: string;
+  id: string;                 // IndexedDB key
+  nationality: string;        // ISO
+  hostCountry: string;        // ISO negara tuan rumah
   city?: string;
-  language: string; // 'id' | 'en' | ...
+  language: string;           // 'id' | 'en' | ...
   onboarded: boolean;
-  updatedAt: string; // ISO datetime
+  updatedAt: string;          // ISO datetime
 }
 
 export interface EvidenceRef {
