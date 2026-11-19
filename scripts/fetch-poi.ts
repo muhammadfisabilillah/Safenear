@@ -9,7 +9,7 @@ import { writeFileSync, mkdirSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { CATEGORY_TAGS, dedupeById, normalizeElements } from '../src/lib/poi/normalize';
-import type { Category, OverpassResponse, PoiBundle } from '../src/lib/poi/types';
+import type { Category, OverpassResponse, Poi, PoiBundle } from '../src/lib/poi/types';
 
 const ENDPOINTS = [
   'https://ovp.dresel.systems/api-na/interpreter',
@@ -29,6 +29,32 @@ function arg(name: string, fallback?: string): string {
 }
 
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+
+/**
+ * Hitung bbox [minLon, minLat, maxLon, maxLat] dari POI dengan padding 10%.
+ * Dipakai untuk menandai area yang tertutup bundle (bukan tebakan radius).
+ */
+function computeBBox(pois: Poi[]): [number, number, number, number] {
+  if (pois.length === 0) return [0, 0, 0, 0];
+  let minLat = Infinity;
+  let maxLat = -Infinity;
+  let minLon = Infinity;
+  let maxLon = -Infinity;
+  for (const p of pois) {
+    if (p.lat < minLat) minLat = p.lat;
+    if (p.lat > maxLat) maxLat = p.lat;
+    if (p.lon < minLon) minLon = p.lon;
+    if (p.lon > maxLon) maxLon = p.lon;
+  }
+  const padLat = Math.max((maxLat - minLat) * 0.1, 0.01);
+  const padLon = Math.max((maxLon - minLon) * 0.1, 0.01);
+  return [
+    Number((minLon - padLon).toFixed(6)),
+    Number((minLat - padLat).toFixed(6)),
+    Number((maxLon + padLon).toFixed(6)),
+    Number((maxLat + padLat).toFixed(6)),
+  ];
+}
 
 function buildQuery(category: Category, lat: number, lon: number, radius: number): string {
   const { tag, value } = CATEGORY_TAGS.find((c) => c.category === category)!;
@@ -84,13 +110,16 @@ async function main() {
     console.log(`  embassy(${nationality}): ${data.elements.length} elemen`);
   }
 
+  const unique = dedupeById(pois);
+  const bbox = computeBBox(unique);
+
   const bundle: PoiBundle = {
     schemaVersion: 1,
     id: `${country}-${city.toLowerCase().replace(/\s+/g, '-')}`,
     country,
     city,
     center: { lat, lon },
-    bbox: [lon - 0.3, lat - 0.08, lon + 0.06, lat + 0.04],
+    bbox,
     downloadedAt: new Date().toISOString(),
     osmBaseTimestamp: osmBase,
     attribution: {
@@ -98,7 +127,7 @@ async function main() {
       openfreemap: 'OpenFreeMap — https://openfreemap.org/',
       note: 'Data komunitas ODbL. Verifikasi sebelum berangkat.',
     },
-    pois: dedupeById(pois),
+    pois: unique,
   };
 
   mkdirSync(dirname(outPath), { recursive: true });
