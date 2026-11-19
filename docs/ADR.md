@@ -101,3 +101,12 @@
 - **Keputusan:** `hashReport()` meng-KANONIKASI objek laporan (key terurut rekursif) lalu SHA-256. PDF menampilkan hash yang sama.
 - **Alternatif:** hash byte PDF (tidak stabil), timestamp server (tidak ada server).
 - **Konsekuensi:** hash stabil lintas perangkat untuk isi yang sama; perubahan satu karakter deskripsi mengubah hash.
+
+---
+
+## ADR-012 — Offline: bundle POI eksplisit, tile via SW cache
+
+- **Konteks:** AC T12 menyebut "unduh area (tile + POI + profil)". Mengunduh tile vector OpenFreeMap secara eksplisit butuh enumerasi tile + batas ≤3.000 tile/≤50 MB/≤4 request paralel, dan berisiko salah konfigurasi URL.
+- **Keputusan:** Halaman `/offline` mengunduh **bundle POI** ke IndexedDB (eksplisit, terukur). Tile dikelola **otomatis oleh service worker** (CacheFirst untuk `tiles.openfreemap.org`), sehingga tile yang pernah dimuat tersedia offline. Profil hak/hotline sudah ter-bundle di app sejak instal.
+- **Alternatif:** (a) enumerasi tile manual — effort & risiko melanggar aturan OpenFreeMap; (b) PMTiles per kota — butuh pipeline planetiler & aset besar (fase 2).
+- **Konsekuensi:** status unduhan jujur (POI terukur; tile "via SW cache"); fitur inti (peta area yang pernah dibuka, POI, lapor, kartu hak) tetap jalan offline. Perlu pesan UI yang jelas agar user paham cakupannya.
