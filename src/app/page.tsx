@@ -7,18 +7,11 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { prefsStore } from '@/lib/prefs/store';
 import type { CountryProfile } from '@/lib/poi/types';
 import { loadCountryProfiles } from '@/lib/prefs/profiles';
+import { HOST_COUNTRIES, bundleIdFromCity, citiesForHost } from '@/lib/prefs/hostCountries';
 import { Button } from '@/components/ui/button';
 import { Select } from '@/components/ui/select';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Alert, AlertDescription } from '@/components/ui/alert';
-
-const PILOT_CITIES: Record<string, { label: string; lat: number; lon: number }[]> = {
-  US: [{ label: 'Houston, TX', lat: 29.7604, lon: -95.3698 }],
-  ID: [
-    { label: 'Jakarta', lat: -6.2088, lon: 106.8456 },
-    { label: 'Surabaya', lat: -7.2575, lon: 112.7521 },
-  ],
-};
 
 export default function OnboardingPageWrapper() {
   const { t } = useTranslation();
@@ -44,6 +37,7 @@ function OnboardingPage() {
   const [nationality, setNationality] = useState('');
   const [hostCountry, setHostCountry] = useState('');
   const [city, setCity] = useState('');
+  const [cityBundleId, setCityBundleId] = useState('');
   const [language, setLanguage] = useState('id');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -62,6 +56,9 @@ function OnboardingPage() {
           setNationality(saved.nationality);
           setHostCountry(saved.hostCountry);
           setCity(saved.city || '');
+          setCityBundleId(
+            saved.cityBundleId || bundleIdFromCity(saved.hostCountry, saved.city) || '',
+          );
           setLanguage(saved.language);
         } else {
           setLanguage(i18n.language);
@@ -75,7 +72,7 @@ function OnboardingPage() {
     init();
   }, [router, fromSettings, i18n.language, t]);
 
-  const citiesForHost = hostCountry ? PILOT_CITIES[hostCountry] || [] : [];
+  const citiesForSelectedHost = hostCountry ? citiesForHost(hostCountry) : [];
 
   const handleNext = async () => {
     if (step === 1 && !nationality) {
@@ -86,7 +83,7 @@ function OnboardingPage() {
       setError(t('onboarding.selectHostCountry'));
       return;
     }
-    if (step === 3 && !city && citiesForHost.length > 0) {
+    if (step === 3 && !city && citiesForSelectedHost.length > 0) {
       setError(t('onboarding.selectCity'));
       return;
     }
@@ -104,6 +101,7 @@ function OnboardingPage() {
         nationality,
         hostCountry,
         city: city || undefined,
+        cityBundleId: cityBundleId || undefined,
         language,
         onboarded: true,
         updatedAt: new Date().toISOString(),
@@ -184,21 +182,45 @@ function OnboardingPage() {
               {step === 2 && (
                 <Select
                   value={hostCountry}
-                  onValueChange={setHostCountry}
+                  onValueChange={(v) => {
+                    setHostCountry(v);
+                    setCity('');
+                    setCityBundleId('');
+                  }}
                   placeholder={t('onboarding.selectHostCountry')}
-                  options={profiles.map((p) => ({ value: p.iso, label: `${p.flag} ${p.name}` }))}
+                  options={HOST_COUNTRIES.map((c) => ({
+                    value: c.iso,
+                    label: `${c.flag} ${c.name}`,
+                  }))}
                 />
               )}
 
               {step === 3 && (
                 <>
-                  {citiesForHost.length > 0 ? (
-                    <Select
-                      value={city}
-                      onValueChange={setCity}
-                      placeholder={t('onboarding.selectCity')}
-                      options={citiesForHost.map((c) => ({ value: c.label, label: c.label }))}
-                    />
+                  {citiesForSelectedHost.length > 0 ? (
+                    <>
+                      <Select
+                        value={city}
+                        onValueChange={(v) => {
+                          setCity(v);
+                          setCityBundleId(
+                            citiesForSelectedHost.find((c) => c.label === v)?.bundleId ?? '',
+                          );
+                        }}
+                        placeholder={t('onboarding.selectCity')}
+                        options={citiesForSelectedHost.map((c) => ({
+                          value: c.label,
+                          label: c.hasBundle
+                            ? c.label
+                            : `${c.label} (${t('onboarding.noDataYet')})`,
+                        }))}
+                      />
+                      {city && !citiesForSelectedHost.find((c) => c.label === city)?.hasBundle ? (
+                        <p className="text-xs text-amber-700 dark:text-amber-400">
+                          {t('onboarding.noDataYet')}
+                        </p>
+                      ) : null}
+                    </>
                   ) : (
                     <div className="text-muted-foreground py-4 text-center">
                       <p>{t('onboarding.cityHelp')}</p>

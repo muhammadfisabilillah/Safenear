@@ -59,6 +59,7 @@
     "nationalityHelp": "Menampilkan kedutaan/konsulat & hotline kedaulatan Anda.",
     "cityHelp": "Kota pilot punya peta offline & bundle POI.",
     "autoDetect": "Deteksi otomatis (butuh internet)",
+    "noDataYet": "Data area ini belum tersedia. Kamu masih bisa pakai kartu hak & hotline.",
     "skipForNow": "Lewati dulu",
     "continue": "Lanjutkan",
     "finish": "Mulai"
@@ -76,6 +77,7 @@
     "downloadArea": "Unduh area",
     "mapLoaded": "Peta dimuat",
     "mapError": "Gagal memuat peta",
+    "nearby": "tempat",
     "gpsDenied": "Izin lokasi ditolak",
     "gpsError": "Gagal dapatkan lokasi"
   },

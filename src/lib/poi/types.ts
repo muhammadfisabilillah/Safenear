@@ -62,6 +62,8 @@ export interface UserPrefs {
   nationality: string; // ISO
   hostCountry: string; // ISO negara tuan rumah
   city?: string;
+  /** Slug bundle untuk kota pilihan, mis. "US-houston". Lebih andal daripada derivasi dari label. */
+  cityBundleId?: string;
   language: string; // 'id' | 'en' | ...
   onboarded: boolean;
   updatedAt: string; // ISO datetime

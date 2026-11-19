@@ -6,6 +6,7 @@ import i18n from '@/lib/i18n';
 import './globals.css';
 import { I18nReadyProvider } from '@/components/i18n/provider';
 import { PwaRegister } from '@/components/pwa/register';
+import { AppShell } from '@/components/layout/AppShell';
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
@@ -25,7 +26,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       </head>
       <body className="bg-background text-foreground safe-area-inset min-h-screen antialiased">
         <I18nextProvider i18n={i18n}>
-          <I18nReadyProvider>{children}</I18nReadyProvider>
+          <I18nReadyProvider>
+            <AppShell>{children}</AppShell>
+          </I18nReadyProvider>
         </I18nextProvider>
         <PwaRegister />
       </body>

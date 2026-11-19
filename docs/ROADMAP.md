@@ -41,8 +41,9 @@ Legenda status: `[ ]` belum · `[~]` progres · `[x]` selesai + terbukti
 
 - [x] Halaman `/`: pilih kewarganegaraan, negara tuan rumah, kota (pilot), bahasa.
 - [x] `src/lib/prefs/store.ts` (IndexedDB, tanpa login).
-- [ ] Lewati onboarding bila sudah ada prefs; ubah di `/settings`.
+- [x] Lewati onboarding bila sudah ada prefs; ubah di `/settings`.
 - **AC:** prefs tersimpan & bertahan reload; pilihan kota memuat bundle yang benar; bisa ubah.
+- **Catatan (19 Nov 2026):** daftar negara tuan rumah dipisah dari profil kewarganegaraan (`HOST_COUNTRIES`) supaya "US" bisa dipilih; `UserPrefs.cityBundleId` menyimpan slug bundle (lebih andal daripada derivasi label).
 
 **DoD M1:** app berjalan; onboarding tersimpan; bundle Houston dari OSM; build+lint hijau.
 
@@ -52,10 +53,11 @@ Legenda status: `[ ]` belum · `[~]` progres · `[x]` selesai + terbukti
 
 ### T5 — Peta dasar
 
-- [ ] MapLibre GL JS + style OpenFreeMap `liberty` + attribution.
-- [ ] Geolocation -> marker user; tombol "locate me".
-- [ ] Chips kategori (police/hospital/embassy/fire/courthouse/shelter).
+- [x] MapLibre GL JS + style OpenFreeMap `liberty` + attribution.
+- [x] Geolocation -> marker user; tombol "locate me" (GeolocateControl).
+- [x] Chips kategori (police/hospital/embassy/fire/courthouse/shelter).
 - **AC:** peta tampil <3 dtk; marker user; chip filter berfungsi; attribution OSM tampil.
+- **Bukti (19 Nov 2026):** dibuka di browser headless -> peta Houston tampil, marker polisi tampil, klik chip "Polisi" -> 47 menjadi 15 tempat, atribusi "OpenFreeMap © OpenMapTiles Data from OpenStreetMap" tampil.
 
 ### T6 — POI repository + nearest
 

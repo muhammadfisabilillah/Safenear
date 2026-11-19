@@ -98,6 +98,7 @@ export const userPrefsSchema = z.object({
   nationality: z.string().length(2),
   hostCountry: z.string().length(2),
   city: z.string().optional(),
+  cityBundleId: z.string().optional(),
   language: z.string().min(2),
   onboarded: z.boolean(),
   updatedAt: z.string(),

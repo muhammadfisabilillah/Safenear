@@ -59,6 +59,7 @@
     "nationalityHelp": "Shows your embassy/consulate & sovereign hotlines.",
     "cityHelp": "Pilot cities have offline maps & POI bundles.",
     "autoDetect": "Auto-detect (needs internet)",
+    "noDataYet": "This area's data is not available yet. You can still use rights cards & hotlines.",
     "skipForNow": "Skip for now",
     "continue": "Continue",
     "finish": "Get started"
@@ -76,6 +77,7 @@
     "downloadArea": "Download area",
     "mapLoaded": "Map loaded",
     "mapError": "Failed to load map",
+    "nearby": "places",
     "gpsDenied": "Location permission denied",
     "gpsError": "Could not get location"
   },
