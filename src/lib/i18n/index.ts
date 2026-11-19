@@ -10,18 +10,17 @@ const resources = {
 
 const savedLang = typeof window !== 'undefined' ? localStorage.getItem('safe-near-lang') : null;
 const browserLang = typeof window !== 'undefined' ? navigator.language.slice(0, 2) : 'en';
-const initialLang = savedLang || (resources[browserLang as keyof typeof resources] ? browserLang : 'en');
+const initialLang =
+  savedLang || (resources[browserLang as keyof typeof resources] ? browserLang : 'en');
 
-i18n
-  .use(initReactI18next)
-  .init({
-    resources,
-    lng: initialLang,
-    fallbackLng: 'en',
-    interpolation: { escapeValue: false },
-    react: { useSuspense: false },
-    debug: process.env.NODE_ENV === 'development',
-  });
+i18n.use(initReactI18next).init({
+  resources,
+  lng: initialLang,
+  fallbackLng: 'en',
+  interpolation: { escapeValue: false },
+  react: { useSuspense: false },
+  debug: process.env.NODE_ENV === 'development',
+});
 
 export function changeLanguage(lng: string) {
   i18n.changeLanguage(lng);

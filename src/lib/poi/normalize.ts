@@ -17,9 +17,7 @@ export const CATEGORY_TAGS: ReadonlyArray<{
 ];
 
 /** Deteksi kategori dari tag OSM (dukungan office=diplomatic juga). */
-export function detectCategory(
-  tags: Record<string, string> | undefined,
-): Category | null {
+export function detectCategory(tags: Record<string, string> | undefined): Category | null {
   if (!tags) return null;
   for (const { category, tag, value } of CATEGORY_TAGS) {
     if (tags[tag] === value) return category;
@@ -29,19 +27,12 @@ export function detectCategory(
 }
 
 /** Susun alamat dari tag addr:* (mengikuti docs/DATA.md §5). */
-export function buildAddress(
-  tags: Record<string, string> | undefined,
-): string | undefined {
+export function buildAddress(tags: Record<string, string> | undefined): string | undefined {
   if (!tags) return undefined;
-  const street = [tags['addr:housenumber'], tags['addr:street']]
-    .filter(Boolean)
-    .join(' ');
-  const parts = [
-    street,
-    tags['addr:city'],
-    tags['addr:postcode'],
-    tags['addr:state'],
-  ].filter(Boolean);
+  const street = [tags['addr:housenumber'], tags['addr:street']].filter(Boolean).join(' ');
+  const parts = [street, tags['addr:city'], tags['addr:postcode'], tags['addr:state']].filter(
+    Boolean,
+  );
   return parts.length ? parts.join(', ') : undefined;
 }
 
@@ -54,19 +45,11 @@ export function normalizePhone(raw?: string): string | undefined {
 
 function nameOf(tags: Record<string, string> | undefined): string {
   if (!tags) return '(tanpa nama)';
-  return (
-    tags['name'] ||
-    tags['name:en'] ||
-    tags['operator'] ||
-    '(tanpa nama)'
-  );
+  return tags['name'] || tags['name:en'] || tags['operator'] || '(tanpa nama)';
 }
 
 /** Normalisasi satu elemen Overpass menjadi Poi. */
-export function normalizeOsm(
-  el: OverpassElement,
-  category: Category,
-): Poi {
+export function normalizeOsm(el: OverpassElement, category: Category): Poi {
   const tags = el.tags ?? {};
   const lat = el.lat ?? el.center?.lat;
   const lon = el.lon ?? el.center?.lon;
@@ -93,10 +76,7 @@ export function normalizeOsm(
 }
 
 /** Normalisasi banyak elemen untuk satu kategori; buang yang tak punya koordinat. */
-export function normalizeElements(
-  elements: OverpassElement[],
-  category: Category,
-): Poi[] {
+export function normalizeElements(elements: OverpassElement[], category: Category): Poi[] {
   const out: Poi[] = [];
   for (const el of elements) {
     try {

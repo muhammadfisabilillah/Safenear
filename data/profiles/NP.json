@@ -4,10 +4,19 @@
   "flag": "🇳🇵",
   "languages": ["ne", "en"],
   "sources": [
-    { "label": "MoLESS — Foreign Employment Board (Call Center)", "url": "https://moless.gov.np/en" }
+    {
+      "label": "MoLESS — Foreign Employment Board (Call Center)",
+      "url": "https://moless.gov.np/en"
+    }
   ],
   "sovereignChannels": [
-    { "label": "Foreign Employment Board (FEB) Toll-free", "kind": "phone", "value": "16600150005", "url": "https://moless.gov.np/en", "note": "Call center FEB untuk migran." },
+    {
+      "label": "Foreign Employment Board (FEB) Toll-free",
+      "kind": "phone",
+      "value": "16600150005",
+      "url": "https://moless.gov.np/en",
+      "note": "Call center FEB untuk migran."
+    },
     { "label": "FEB Toll-free (alternatif)", "kind": "phone", "value": "1141" },
     { "label": "FEB International", "kind": "phone", "value": "+977-15970008" },
     { "label": "FEB Call Center Email", "kind": "email", "value": "callcenter@feb.gov.np" }

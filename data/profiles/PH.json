@@ -4,12 +4,29 @@
   "flag": "🇵🇭",
   "languages": ["en", "fil"],
   "sources": [
-    { "label": "DMW — Contact Us (Emergency Hotline 1348)", "url": "https://dmw.gov.ph/contact-us" },
+    {
+      "label": "DMW — Contact Us (Emergency Hotline 1348)",
+      "url": "https://dmw.gov.ph/contact-us"
+    },
     { "label": "OWWA — Contact Us (24/7 Hotline 1348)", "url": "https://owwa.gov.ph/contact-us/" }
   ],
   "sovereignChannels": [
-    { "label": "DMW Emergency Hotline", "kind": "phone", "value": "1348", "url": "https://dmw.gov.ph/contact-us", "hours": "24/7", "note": "Department of Migrant Workers — hotline darurat untuk OFW." },
-    { "label": "OWWA 24/7 Operations Center", "kind": "phone", "value": "1348", "url": "https://owwa.gov.ph/contact-us/", "hours": "24/7", "note": "Helpdesk OWWA untuk OFW yang terdesak / repatriasi." },
+    {
+      "label": "DMW Emergency Hotline",
+      "kind": "phone",
+      "value": "1348",
+      "url": "https://dmw.gov.ph/contact-us",
+      "hours": "24/7",
+      "note": "Department of Migrant Workers — hotline darurat untuk OFW."
+    },
+    {
+      "label": "OWWA 24/7 Operations Center",
+      "kind": "phone",
+      "value": "1348",
+      "url": "https://owwa.gov.ph/contact-us/",
+      "hours": "24/7",
+      "note": "Helpdesk OWWA untuk OFW yang terdesak / repatriasi."
+    },
     { "label": "Email DMW", "kind": "email", "value": "info@dmw.gov.ph" }
   ],
   "consulateStrategy": {

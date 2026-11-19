@@ -16,30 +16,30 @@
 
 ## 2. Sumber data
 
-| Sumber | Isi | Lisensi | Cara ambil | Catatan |
-|---|---|---|---|---|
-| OpenStreetMap (via Overpass) | POI polisi, RS, pemadam, pengadilan, townhall, shelter, kedutaan | ODbL | Query Overpass QL | Wajib atribusi; cache |
-| OpenFreeMap | Tile vektor (basemap) | OSM/ODbL | CDN `tiles.openfreemap.org` | No key; offline ≤3.000 tile/≤50 MB |
-| Nominatim | Geocode / reverse geocode | ODbL | REST | User-Agent wajib; ~1 req/dtk |
-| EmergencyNumberAPI | Nomor darurat per negara | ODbL | `emergencynumberapi.com/api/country/{iso}` | Cache per negara |
-| Google Maps URLs | Navigasi turn-by-turn | ToS Google | URL `api=1` | Gratis, no key |
-| OSRM (opsional) | Rute/polyline | BSD-2 | Self-host Docker | Demo publik ~1 req/dtk |
-| Portal Peduli WNI | Hotline/email/portal WNI | Pemerintah RI | Manual -> `profiles/ID.json` | Verified 2026-11 |
-| Konvensi Wina 1963 | Teks Pasal 36 | UN | Manual -> `rights` | Sumber primer |
+| Sumber                       | Isi                                                              | Lisensi       | Cara ambil                                 | Catatan                            |
+| ---------------------------- | ---------------------------------------------------------------- | ------------- | ------------------------------------------ | ---------------------------------- |
+| OpenStreetMap (via Overpass) | POI polisi, RS, pemadam, pengadilan, townhall, shelter, kedutaan | ODbL          | Query Overpass QL                          | Wajib atribusi; cache              |
+| OpenFreeMap                  | Tile vektor (basemap)                                            | OSM/ODbL      | CDN `tiles.openfreemap.org`                | No key; offline ≤3.000 tile/≤50 MB |
+| Nominatim                    | Geocode / reverse geocode                                        | ODbL          | REST                                       | User-Agent wajib; ~1 req/dtk       |
+| EmergencyNumberAPI           | Nomor darurat per negara                                         | ODbL          | `emergencynumberapi.com/api/country/{iso}` | Cache per negara                   |
+| Google Maps URLs             | Navigasi turn-by-turn                                            | ToS Google    | URL `api=1`                                | Gratis, no key                     |
+| OSRM (opsional)              | Rute/polyline                                                    | BSD-2         | Self-host Docker                           | Demo publik ~1 req/dtk             |
+| Portal Peduli WNI            | Hotline/email/portal WNI                                         | Pemerintah RI | Manual -> `profiles/ID.json`               | Verified 2026-11                   |
+| Konvensi Wina 1963           | Teks Pasal 36                                                    | UN            | Manual -> `rights`                         | Sumber primer                      |
 
 ---
 
 ## 3. Tag OSM yang dipakai
 
-| Kategori | Tag utama | Tag alternatif |
-|---|---|---|
-| police | `amenity=police` | — |
-| hospital | `amenity=hospital` | `healthcare=hospital` |
-| fire | `amenity=fire_station` | — |
-| courthouse | `amenity=courthouse` | — |
-| shelter | `amenity=shelter` | `emergency=shelter` |
-| townhall | `amenity=townhall` | `office=government` |
-| embassy | `amenity=embassy` + `country=<ISO>` | `office=diplomatic` + `country=<ISO>` |
+| Kategori   | Tag utama                           | Tag alternatif                        |
+| ---------- | ----------------------------------- | ------------------------------------- |
+| police     | `amenity=police`                    | —                                     |
+| hospital   | `amenity=hospital`                  | `healthcare=hospital`                 |
+| fire       | `amenity=fire_station`              | —                                     |
+| courthouse | `amenity=courthouse`                | —                                     |
+| shelter    | `amenity=shelter`                   | `emergency=shelter`                   |
+| townhall   | `amenity=townhall`                  | `office=government`                   |
+| embassy    | `amenity=embassy` + `country=<ISO>` | `office=diplomatic` + `country=<ISO>` |
 
 Rujukan: https://wiki.openstreetmap.org/wiki/Map_features · https://wiki.openstreetmap.org/wiki/Overpass_API
 
@@ -48,6 +48,7 @@ Rujukan: https://wiki.openstreetmap.org/wiki/Map_features · https://wiki.openst
 ## 4. Query Overpass (siap pakai)
 
 ### 4.1 POI umum di sekitar titik
+
 ```
 [out:json][timeout:25];
 (
@@ -62,14 +63,17 @@ out center tags;
 ```
 
 ### 4.2 Kedutaan negara tertentu (mis. ID)
+
 ```
 [out:json][timeout:25];
 nwr["amenity"="embassy"]["country"="ID"](around:25000, LAT, LON);
 out center tags;
 ```
+
 Catatan: `around:RADIUS, LAT, LON` (meter). `out center` = centroid untuk way/relation.
 
 ### 4.3 Instance & batas
+
 - Utama: `https://overpass-api.de/api/interpreter`
 - Alternatif: `https://overpass.osm.ch/api/interpreter`, `https://ovp.dresel.systems/api/interpreter` (Eropa), `https://ovp.dresel.systems/api-na/interpreter` (Amerika Utara)
 - Batas utama: <10.000 query/hari, <1 GB/hari; **untuk app: cache + bundle wajib**. Sumber: https://wiki.openstreetmap.org/wiki/Overpass_API
@@ -81,9 +85,8 @@ Catatan: `around:RADIUS, LAT, LON` (meter). `out center` = centroid untuk way/re
 ```ts
 // aturan singkat
 function normalizeOsm(el: OverpassElement, category: Category): Poi {
-  const center = el.lat != null
-    ? { lat: el.lat, lon: el.lon! }
-    : { lat: el.center!.lat, lon: el.center!.lon };
+  const center =
+    el.lat != null ? { lat: el.lat, lon: el.lon! } : { lat: el.center!.lat, lon: el.center!.lon };
   return {
     id: `osm:${el.type}/${el.id}`,
     source: 'osm',
@@ -91,7 +94,7 @@ function normalizeOsm(el: OverpassElement, category: Category): Poi {
     name: el.tags?.name ?? '(tanpa nama)',
     lat: center.lat,
     lon: center.lon,
-    address: buildAddress(el.tags),     // "addr:street" + "addr:city" + "addr:postcode"
+    address: buildAddress(el.tags), // "addr:street" + "addr:city" + "addr:postcode"
     phone: normalizePhone(el.tags?.phone),
     openingHours: el.tags?.opening_hours,
     url: el.tags?.website,
@@ -103,6 +106,7 @@ function normalizeOsm(el: OverpassElement, category: Category): Poi {
 ```
 
 Aturan:
+
 - `name` fallback: `name` -> `name:en` -> `operator` -> `'(tanpa nama)'`.
 - `phone` normalize ke format yang bisa dipanggil (`tel:`); buang karakter tak valid.
 - `address`: gabungkan `addr:street`, `addr:housenumber`, `addr:city`, `addr:postcode`, `addr:country`.
@@ -114,6 +118,7 @@ Aturan:
 ## 6. Format bundle offline
 
 `data/bundles/<COUNTRY>-<CITY>.json`:
+
 ```json
 {
   "id": "US-houston",
@@ -126,13 +131,14 @@ Aturan:
     "osm": "© OpenStreetMap contributors, ODbL",
     "openfreemap": "OpenFreeMap"
   },
-  "pois": [ /* Poi[] */ ]
+  "pois": [/* Poi[] */]
 }
 ```
 
 Bundle tile: PMTiles area, disimpan di OPFS; nama file `<COUNTRY>-<CITY>.pmtiles`.
 
 Aturan:
+
 - Satu kota = satu bundle POI + satu PMTiles.
 - Bundel **versi** (`schemaVersion: 1`).
 - Simpan `attribution` di bundle -> UI menampilkannya.
@@ -145,6 +151,7 @@ Aturan:
 `data/profiles/<ISO>.json` — skema di `PROJECT_CONTEXT.md` §10.3.
 
 Contoh `ID.json` (lihat §10.7 dokumen induk). Aturan:
+
 - `sovereignChannels` hanya diisi dari sumber resmi terverifikasi.
 - `rightsNotes` wajib punya `source`.
 - Jangan mengisi nomor/hak yang tidak terverifikasi; pakai placeholder `"—"` + catatan.
@@ -163,10 +170,12 @@ Profil MVP: `ID`, `PH`, `BD`, `NP` — semua hotline resmi terverifikasi (DMW/OW
 ```
 
 Script:
+
 - `scripts/fetch-poi.ts` — argumen: `--country --city --lat --lon --radius --out`.
 - `scripts/build-bundle.ts` — gabung + validasi + hitung hash.
 
 Aturan:
+
 - Rate limit: minimal 1 req/dtk; jangan paralel ke Overpass.
 - Simpan `raw` di folder `cache/` (tidak di-commit) untuk audit.
 - Gagal fetch -> pesan jelas; jangan tulis bundle kosong.

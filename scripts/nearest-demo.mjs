@@ -7,9 +7,7 @@ import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
-const bundle = JSON.parse(
-  readFileSync(resolve(root, 'data/bundles/US-houston.json'), 'utf8'),
-);
+const bundle = JSON.parse(readFileSync(resolve(root, 'data/bundles/US-houston.json'), 'utf8'));
 
 function haversineMeters(a, b) {
   const R = 6371000;

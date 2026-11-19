@@ -37,7 +37,8 @@ else ok('schemaVersion = 1');
 if (!raw.id) fail('id kosong');
 if (!raw.country) fail('country kosong');
 if (!raw.city) fail('city kosong');
-if (!Array.isArray(raw.bbox) || raw.bbox.length !== 4) fail('bbox harus [minLon,minLat,maxLon,maxLat]');
+if (!Array.isArray(raw.bbox) || raw.bbox.length !== 4)
+  fail('bbox harus [minLon,minLat,maxLon,maxLat]');
 if (!raw.attribution || !raw.attribution.osm) fail('atribusi OSM wajib ada');
 
 if (!Array.isArray(raw.pois)) {
@@ -57,10 +58,14 @@ for (const [i, p] of raw.pois.entries()) {
   ids.add(p.id);
   if (!CATEGORIES.has(p.category)) fail(`${where}: category tidak valid (${p.category})`);
   if (typeof p.name !== 'string' || !p.name) fail(`${where}: name kosong`);
-  if (typeof p.lat !== 'number' || p.lat < -90 || p.lat > 90) fail(`${where}: lat tidak valid (${p.lat})`);
-  if (typeof p.lon !== 'number' || p.lon < -180 || p.lon > 180) fail(`${where}: lon tidak valid (${p.lon})`);
-  if (p.phone !== undefined && !/^\+?[\d\s()\-]+$/.test(p.phone)) fail(`${where}: phone aneh (${p.phone})`);
-  if (p.verifiedAt !== undefined && !/^\d{4}-\d{2}-\d{2}$/.test(p.verifiedAt)) fail(`${where}: verifiedAt bukan yyyy-mm-dd`);
+  if (typeof p.lat !== 'number' || p.lat < -90 || p.lat > 90)
+    fail(`${where}: lat tidak valid (${p.lat})`);
+  if (typeof p.lon !== 'number' || p.lon < -180 || p.lon > 180)
+    fail(`${where}: lon tidak valid (${p.lon})`);
+  if (p.phone !== undefined && !/^\+?[\d\s()\-]+$/.test(p.phone))
+    fail(`${where}: phone aneh (${p.phone})`);
+  if (p.verifiedAt !== undefined && !/^\d{4}-\d{2}-\d{2}$/.test(p.verifiedAt))
+    fail(`${where}: verifiedAt bukan yyyy-mm-dd`);
   if (p.category === 'embassy' && !p.nationality) fail(`${where}: embassy harus punya nationality`);
   counts[p.category] = (counts[p.category] ?? 0) + 1;
   checked++;

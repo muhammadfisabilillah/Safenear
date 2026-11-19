@@ -1,13 +1,7 @@
 // SAFE NEAR — tipe data inti.
 // Sumber kebenaran: PROJECT_CONTEXT.md §10.
 
-export type Category =
-  | 'police'
-  | 'hospital'
-  | 'embassy'
-  | 'fire'
-  | 'courthouse'
-  | 'shelter';
+export type Category = 'police' | 'hospital' | 'embassy' | 'fire' | 'courthouse' | 'shelter';
 
 export type PoiSource = 'osm' | 'official' | 'community';
 
@@ -64,13 +58,13 @@ export interface CountryProfile {
 }
 
 export interface UserPrefs {
-  id: string;                 // IndexedDB key
-  nationality: string;        // ISO
-  hostCountry: string;        // ISO negara tuan rumah
+  id: string; // IndexedDB key
+  nationality: string; // ISO
+  hostCountry: string; // ISO negara tuan rumah
   city?: string;
-  language: string;           // 'id' | 'en' | ...
+  language: string; // 'id' | 'en' | ...
   onboarded: boolean;
-  updatedAt: string;          // ISO datetime
+  updatedAt: string; // ISO datetime
 }
 
 export interface EvidenceRef {
@@ -108,6 +102,8 @@ export interface PoiBundle {
   bbox: [number, number, number, number]; // [minLon, minLat, maxLon, maxLat]
   downloadedAt: string;
   osmBaseTimestamp?: string;
+  /** Ukuran payload POI dalam byte (untuk info storage); opsional. */
+  sizeBytes?: number;
   attribution: Record<string, string>;
   notes?: string[];
   pois: Poi[];

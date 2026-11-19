@@ -19,8 +19,8 @@ const Select = forwardRef<HTMLSelectElement, SelectProps>(
       <select
         ref={ref}
         className={cn(
-          'flex h-10 w-full appearance-none rounded-md border border-border bg-background px-3 py-2 text-base focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none touch-target',
-          className
+          'border-border bg-background focus:ring-primary touch-target flex h-10 w-full appearance-none rounded-md border px-3 py-2 text-base focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
+          className,
         )}
         value={value}
         onChange={(e) => onValueChange(e.target.value)}
@@ -39,7 +39,7 @@ const Select = forwardRef<HTMLSelectElement, SelectProps>(
         ))}
       </select>
     );
-  }
+  },
 );
 Select.displayName = 'Select';
 

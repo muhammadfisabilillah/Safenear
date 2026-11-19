@@ -7,13 +7,13 @@
 
 ## 1. Status saat ini (19 Nov 2026)
 
-| Task | Status | Bukti |
-|---|---|---|
-| T0 Setup repo & tooling | ✅ Selesai (B1) | `npm run build` hijau, `npm run lint` 0 error, `npm run test` 15 lulus |
-| T1 PWA shell | ✅ Selesai | manifest, icons (192/512/maskable), Workbox SW, i18n, layout |
-| T2 Skema data + validasi | ✅ Selesai | `types.ts`, `normalize.ts`, profil ID/PH/BD/NP, 15 test hijau |
-| T3 Ingest POI | 🚧 Script siap | `scripts/fetch-poi.ts` ada, **belum dijalankan** |
-| T4 Onboarding + prefs | ✅ Selesai | `/`, `prefs/store.ts` (IndexedDB) |
+| Task                     | Status          | Bukti                                                                  |
+| ------------------------ | --------------- | ---------------------------------------------------------------------- |
+| T0 Setup repo & tooling  | ✅ Selesai (B1) | `npm run build` hijau, `npm run lint` 0 error, `npm run test` 15 lulus |
+| T1 PWA shell             | ✅ Selesai      | manifest, icons (192/512/maskable), Workbox SW, i18n, layout           |
+| T2 Skema data + validasi | ✅ Selesai      | `types.ts`, `normalize.ts`, profil ID/PH/BD/NP, 15 test hijau          |
+| T3 Ingest POI            | 🚧 Script siap  | `scripts/fetch-poi.ts` ada, **belum dijalankan**                       |
+| T4 Onboarding + prefs    | ✅ Selesai      | `/`, `prefs/store.ts` (IndexedDB)                                      |
 
 **Sisa waktu:** ±13 hari (deadline 2 Des 2026).
 **Prioritas:** backend/fondasi dulu, frontend design rapi belakangan.
@@ -41,13 +41,14 @@ SAFE NEAR **tidak punya backend server**. Semua logika jalan di browser.
 
 ## 3. Rencana malam ini (Backend/Fondasi)
 
-| # | Task | Output | AC | Status |
-|---|---|---|---|---|
-| B1 | ESLint + Vitest config | `eslint.config.mjs`, `vitest.config.ts`, `vitest.setup.ts` | lint & test hijau | ✅ |
-| B2 | PWA manifest + icons | `public/manifest.webmanifest`, `icons/icon-192.png`, `icon-512.png` | build menghasilkan manifest, icon ada | ✅ |
-| B3 | Workbox service worker | `next.config.mjs` + SW config | `npm run build` generate `sw.js`, app shell precache | ✅ |
-| B4 | Fetch POI Houston | `data/bundles/US-houston.json` | script selesai, bundle valid | 🚧 |
-| B5 | Commit & push | git | tiap task commit + push | 🚧 |
+| #   | Task                                                    | Output                                                              | AC                                                   | Status      |
+| --- | ------------------------------------------------------- | ------------------------------------------------------------------- | ---------------------------------------------------- | ----------- |
+| B1  | ESLint + Vitest config                                  | `eslint.config.mjs`, `vitest.config.ts`, `vitest.setup.ts`          | lint & test hijau                                    | ✅          |
+| B2  | PWA manifest + icons                                    | `public/manifest.webmanifest`, `icons/icon-192.png`, `icon-512.png` | build menghasilkan manifest, icon ada                | ✅          |
+| B3  | Workbox service worker                                  | `next.config.mjs` + SW config                                       | `npm run build` generate `sw.js`, app shell precache | ✅          |
+| B4  | Fetch POI Houston                                       | `data/bundles/US-houston.json`                                      | script selesai, bundle valid                         | ✅ (47 POI) |
+| B5  | Commit & push                                           | git                                                                 | tiap task commit + push                              | ✅          |
+| B6  | Backend inti (geo, routing, repository, schema, report) | `src/lib/**` + 124 test                                             | lint/test/build hijau                                | ✅          |
 
 ---
 

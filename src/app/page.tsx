@@ -13,9 +13,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 
 const PILOT_CITIES: Record<string, { label: string; lat: number; lon: number }[]> = {
-  US: [
-    { label: 'Houston, TX', lat: 29.7604, lon: -95.3698 },
-  ],
+  US: [{ label: 'Houston, TX', lat: 29.7604, lon: -95.3698 }],
   ID: [
     { label: 'Jakarta', lat: -6.2088, lon: 106.8456 },
     { label: 'Surabaya', lat: -7.2575, lon: 112.7521 },
@@ -25,7 +23,11 @@ const PILOT_CITIES: Record<string, { label: string; lat: number; lon: number }[]
 export default function OnboardingPageWrapper() {
   const { t } = useTranslation();
   return (
-    <Suspense fallback={<div className="min-h-screen flex items-center justify-center">{t('common.loading')}</div>}>
+    <Suspense
+      fallback={
+        <div className="flex min-h-screen items-center justify-center">{t('common.loading')}</div>
+      }
+    >
       <OnboardingPage />
     </Suspense>
   );
@@ -115,30 +117,36 @@ function OnboardingPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-background">
-        <div className="animate-pulse text-primary text-lg">{t('common.loading')}</div>
+      <div className="bg-background flex min-h-screen items-center justify-center">
+        <div className="text-primary animate-pulse text-lg">{t('common.loading')}</div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen flex flex-col safe-area-inset">
-      <header className="p-4 border-b border-border bg-card">
-        <h1 className="text-xl font-semibold text-center">{t('common.appName')}</h1>
+    <div className="safe-area-inset flex min-h-screen flex-col">
+      <header className="border-border bg-card border-b p-4">
+        <h1 className="text-center text-xl font-semibold">{t('common.appName')}</h1>
       </header>
 
-      <main className="flex-1 p-4 overflow-y-auto">
-        <div className="max-w-md mx-auto w-full">
+      <main className="flex-1 overflow-y-auto p-4">
+        <div className="mx-auto w-full max-w-md">
           <div className="mb-6 text-center">
-            <h2 className="text-2xl font-bold mb-2">{t('onboarding.title')}</h2>
+            <h2 className="mb-2 text-2xl font-bold">{t('onboarding.title')}</h2>
             <p className="text-muted-foreground text-sm">{t('onboarding.subtitle')}</p>
           </div>
 
-          <div className="flex gap-2 mb-6" role="progressbar" aria-valuenow={step} aria-valuemin={1} aria-valuemax={4}>
+          <div
+            className="mb-6 flex gap-2"
+            role="progressbar"
+            aria-valuenow={step}
+            aria-valuemin={1}
+            aria-valuemax={4}
+          >
             {[1, 2, 3, 4].map((s) => (
               <div
                 key={s}
-                className={`flex-1 h-1.5 rounded-full transition-colors ${
+                className={`h-1.5 flex-1 rounded-full transition-colors ${
                   s <= step ? 'bg-primary' : 'bg-border'
                 }`}
               />
@@ -162,16 +170,16 @@ function OnboardingPage() {
             </CardHeader>
             <CardContent className="space-y-4">
               {step === 1 && (
-            <>
-              <Select
-                value={nationality}
-                onValueChange={setNationality}
-                placeholder={t('onboarding.selectNationality')}
-                options={profiles.map((p) => ({ value: p.iso, label: `${p.flag} ${p.name}` }))}
-              />
-              <p className="text-xs text-muted-foreground">{t('onboarding.nationalityHelp')}</p>
-            </>
-          )}
+                <>
+                  <Select
+                    value={nationality}
+                    onValueChange={setNationality}
+                    placeholder={t('onboarding.selectNationality')}
+                    options={profiles.map((p) => ({ value: p.iso, label: `${p.flag} ${p.name}` }))}
+                  />
+                  <p className="text-muted-foreground text-xs">{t('onboarding.nationalityHelp')}</p>
+                </>
+              )}
 
               {step === 2 && (
                 <Select
@@ -192,21 +200,24 @@ function OnboardingPage() {
                       options={citiesForHost.map((c) => ({ value: c.label, label: c.label }))}
                     />
                   ) : (
-                    <div className="text-center py-4 text-muted-foreground">
+                    <div className="text-muted-foreground py-4 text-center">
                       <p>{t('onboarding.cityHelp')}</p>
                       <Button variant="outline" className="mt-2" onClick={() => setCity('')}>
                         {t('onboarding.skipForNow')}
                       </Button>
                     </div>
                   )}
-                  <p className="text-xs text-muted-foreground">{t('onboarding.cityHelp')}</p>
+                  <p className="text-muted-foreground text-xs">{t('onboarding.cityHelp')}</p>
                 </>
               )}
 
               {step === 4 && (
                 <Select
                   value={language}
-                  onValueChange={(v) => { setLanguage(v); changeLanguage(v); }}
+                  onValueChange={(v) => {
+                    setLanguage(v);
+                    changeLanguage(v);
+                  }}
                   placeholder={t('onboarding.selectLanguage')}
                   options={[
                     { value: 'id', label: 'Bahasa Indonesia' },
@@ -219,7 +230,14 @@ function OnboardingPage() {
 
           <div className="mt-6 flex gap-3">
             {step > 1 && (
-              <Button variant="outline" className="flex-1" onClick={() => { setStep(step - 1); setError(null); }}>
+              <Button
+                variant="outline"
+                className="flex-1"
+                onClick={() => {
+                  setStep(step - 1);
+                  setError(null);
+                }}
+              >
                 {t('common.back')}
               </Button>
             )}
@@ -234,7 +252,7 @@ function OnboardingPage() {
             )}
           </div>
 
-          <p className="mt-4 text-center text-xs text-muted-foreground">
+          <p className="text-muted-foreground mt-4 text-center text-xs">
             {t('common.disclaimerEmergency')}
           </p>
         </div>

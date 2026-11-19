@@ -11,9 +11,7 @@ const swDest = 'out/sw.js';
 
 await generateSW({
   globDirectory: 'out/',
-  globPatterns: [
-    '**/*.{js,css,html,json,png,svg,ico,txt,webmanifest}',
-  ],
+  globPatterns: ['**/*.{js,css,html,json,png,svg,ico,txt,webmanifest}'],
   swDest,
   skipWaiting: true,
   clientsClaim: true,

@@ -1,0 +1,9 @@
+node_modules/
+.next/
+out/
+coverage/
+data/bundles/*.json
+!data/bundles/US-houston.json
+public/sw.js
+public/workbox-*.js
+*.log

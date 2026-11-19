@@ -83,9 +83,9 @@ function drawIcon(size) {
   const buf = Buffer.alloc(size * size * 4);
   const cx = size / 2;
   const cy = size * 0.44; // pusat lingkaran pin
-  const rOuter = size * 0.30;
+  const rOuter = size * 0.3;
   const rInner = size * 0.155;
-  const tipY = size * 0.80;
+  const tipY = size * 0.8;
 
   for (let y = 0; y < size; y++) {
     for (let x = 0; x < size; x++) {

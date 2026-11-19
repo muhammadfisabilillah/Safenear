@@ -20,11 +20,7 @@ export function I18nReadyProvider({ children }: { children: ReactNode }) {
     }
   }, []);
 
-  return (
-    <I18nReadyContext.Provider value={{ ready }}>
-      {children}
-    </I18nReadyContext.Provider>
-  );
+  return <I18nReadyContext.Provider value={{ ready }}>{children}</I18nReadyContext.Provider>;
 }
 
 export function useI18nReady() {

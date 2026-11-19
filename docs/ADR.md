@@ -74,3 +74,30 @@
 - **Keputusan:** Tidak di MVP. Boleh prototipe ringan hanya bila semua AC MVP hijau lebih awal.
 - **Alternatif:** masuk MVP.
 - **Konsekuensi:** menghindari risiko hallucinasi & scope creep; narasi AI bisa ditambahkan nanti.
+
+---
+
+## ADR-009 — Nearest pakai haversine + sort (bukan turf)
+
+- **Konteks:** PROJECT_CONTEXT.md §9 menyebut `@turf/turf` & `@turf/nearest-point` untuk jarak/nearest. Implementasi awal memakai haversine + sort.
+- **Keputusan:** `nearestPois()` di `src/lib/geo/geo.ts` memakai haversine + pengurutan. turf dipakai hanya bila nanti perlu geometri kompleks (mis. poligon, rute).
+- **Alternatif:** (a) `nearest-point` per kandidat — import lebih besar, hasil ekuivalen untuk titik; (b) spiderify/octhree — overkill untuk skala kota.
+- **Konsekuensi:** bundle lebih kecil & logika deterministik yang mudah di-test; akurasi haversine cukup untuk radius <10 km (kesalahan <0,5%). Bila nanti butuh jarak jalan (bukan lurus), pakai OSRM.
+
+---
+
+## ADR-010 — Service worker Workbox + bundle data disalin ke static export
+
+- **Konteks:** `output: 'export'` tidak menjalankan server; butuh SW untuk offline + bundle POI harus bisa di-fetch.
+- **Keputusan:** `npm run build` = `next build` → `scripts/copy-data.mjs` (salin `data/bundles` & `data/profiles` ke `out/`) → `scripts/build-sw.mjs` (Workbox generateSW). SW precache app shell + runtime cache (tile, Overpass, Nominatim, emergency numbers).
+- **Alternatif:** (a) `next-pwa` (plugin, lebih terikat Next); (b) tulis SW manual (effort, rawan salah).
+- **Konsekuensi:** SW ikut ke static export; header keamanan (CSP/dll) tetap harus diatur di CDN (Cloudflare `_headers`) karena export statis mengabaikan `headers()`.
+
+---
+
+## ADR-011 — Hash laporan dihitung dari konten kanonik (bukan byte PDF)
+
+- **Konteks:** Perlu bukti isi laporan tidak berubah; byte PDF bisa beda antar render (metadata waktu).
+- **Keputusan:** `hashReport()` meng-KANONIKASI objek laporan (key terurut rekursif) lalu SHA-256. PDF menampilkan hash yang sama.
+- **Alternatif:** hash byte PDF (tidak stabil), timestamp server (tidak ada server).
+- **Konsekuensi:** hash stabil lintas perangkat untuk isi yang sama; perubahan satu karakter deskripsi mengubah hash.

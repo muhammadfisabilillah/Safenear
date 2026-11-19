@@ -146,8 +146,14 @@ describe('normalizeElements', () => {
 
 describe('dedupeById', () => {
   it('membuang duplikat berdasarkan id', () => {
-    const mk = (id: string) =>
-      ({ id, source: 'osm' as const, category: 'police' as const, name: id, lat: 0, lon: 0 });
+    const mk = (id: string) => ({
+      id,
+      source: 'osm' as const,
+      category: 'police' as const,
+      name: id,
+      lat: 0,
+      lon: 0,
+    });
     const out = dedupeById([mk('a'), mk('b'), mk('a')]);
     expect(out.map((p) => p.id)).toEqual(['a', 'b']);
   });
