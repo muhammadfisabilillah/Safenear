@@ -19,19 +19,28 @@ interface SafeNearDB extends DBSchema {
     key: string;
     value: { key: string; data: ArrayBuffer; mime: string; createdAt: string };
   };
+  corrections: {
+    key: string;
+    value: import('@/lib/poi/types').PlaceCorrection;
+  };
 }
 
 let dbPromise: Promise<IDBPDatabase<SafeNearDB>> | null = null;
 
 function getDB() {
   if (!dbPromise) {
-    dbPromise = openDB<SafeNearDB>('safe-near', 1, {
-      upgrade(db) {
-        db.createObjectStore('prefs', { keyPath: 'id' });
-        const reportStore = db.createObjectStore('reports', { keyPath: 'id' });
-        reportStore.createIndex('by-date', 'createdAt');
-        db.createObjectStore('bundles', { keyPath: 'id' });
-        db.createObjectStore('evidence', { keyPath: 'key' });
+    dbPromise = openDB<SafeNearDB>('safe-near', 2, {
+      upgrade(db, oldVersion) {
+        if (oldVersion < 1) {
+          db.createObjectStore('prefs', { keyPath: 'id' });
+          const reportStore = db.createObjectStore('reports', { keyPath: 'id' });
+          reportStore.createIndex('by-date', 'createdAt');
+          db.createObjectStore('bundles', { keyPath: 'id' });
+          db.createObjectStore('evidence', { keyPath: 'key' });
+        }
+        if (oldVersion < 2) {
+          db.createObjectStore('corrections', { keyPath: 'id' });
+        }
       },
     });
   }
@@ -133,11 +142,27 @@ export const evidenceStore = {
   },
 };
 
+export const correctionsStore = {
+  async put(correction: import('@/lib/poi/types').PlaceCorrection): Promise<void> {
+    const db = await getDB();
+    await db.put('corrections', correction);
+  },
+  async getAll(): Promise<import('@/lib/poi/types').PlaceCorrection[]> {
+    const db = await getDB();
+    return db.getAll('corrections');
+  },
+  async clear(): Promise<void> {
+    const db = await getDB();
+    await db.clear('corrections');
+  },
+};
+
 export async function clearAllData(): Promise<void> {
   await prefsStore.clear();
   await reportsStore.clear();
   await bundlesStore.clear();
   await evidenceStore.clear();
+  await correctionsStore.clear();
   if (typeof window !== 'undefined') {
     localStorage.removeItem('safe-near-lang');
     if ('caches' in window) {

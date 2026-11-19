@@ -111,6 +111,16 @@ export interface PoiBundle {
   pois: Poi[];
 }
 
+/** Koreksi data tempat yang dikirim user (lokal; publikasi = fase 2). */
+export interface PlaceCorrection {
+  id: string;
+  poiId: string;
+  reason: 'wrong-location' | 'closed' | 'wrong-info' | 'other';
+  note?: string;
+  createdAt: string;
+  status: 'pending' | 'submitted';
+}
+
 // ---------- Overpass ----------
 
 export interface OverpassElement {

@@ -20,6 +20,11 @@ await generateSW({
   // Navigasi offline -> shell (App Router akan menangani route di client).
   navigateFallback: '/index.html',
   navigateFallbackDenylist: [/^\/_next\/static\//, /\/icons\//],
+  // Halaman statis (/place/, /nearby/, ...) memuat HTML lewat directory index.
+  directoryIndex: 'index.html',
+  // Query (?id=..., ?category=...) TIDAK menentukan dokumen -> diabaikan saat
+  // mencocokkan precache, supaya /place/?id=x tetap memuat /place/index.html.
+  ignoreURLParametersMatching: [/.*/],
 
   // --- Runtime caching ---
   runtimeCaching: [

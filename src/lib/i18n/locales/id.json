@@ -111,7 +111,16 @@
     "noPhone": "Tidak ada telepon",
     "noHours": "Jam buka tidak tersedia",
     "noWebsite": "Tidak ada situs web",
-    "noAddress": "Alamat tidak tersedia"
+    "noAddress": "Alamat tidak tersedia",
+    "notFound": "Tempat tidak ditemukan di area ini.",
+    "reason": "Alasan",
+    "wrongLocation": "Lokasi salah",
+    "closed": "Sudah tutup / pindah",
+    "wrongInfo": "Informasi salah",
+    "other": "Lainnya",
+    "note": "Catatan (opsional)",
+    "notePlaceholder": "Contoh: kantor ini sudah pindah…",
+    "correctionSaved": "Koreksi tersimpan di perangkat. (Publikasi ke data sumber = fase 2.)"
   },
   "rights": {
     "title": "Ketahui Hak Anda",

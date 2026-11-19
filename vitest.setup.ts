@@ -1,5 +1,9 @@
 import '@testing-library/jest-dom/vitest';
-import { vi, beforeAll, afterAll } from 'vitest';
+import { vi, beforeAll, afterAll, afterEach } from 'vitest';
+import { cleanup } from '@testing-library/react';
+
+// Bersihkan pohon DOM antar test (vitest globals=false -> cleanup otomatis tidak jalan).
+afterEach(() => cleanup());
 
 // Mock next/navigation
 vi.mock('next/navigation', () => ({

@@ -43,7 +43,7 @@ describe('PoiCard', () => {
   it('tautan ke /place/<id>', () => {
     render(<PoiCard poi={poi} />);
     const links = screen.getAllByRole('link');
-    expect(links[0].getAttribute('href')).toContain('/place/');
+    expect(links[0].getAttribute('href')).toContain('/place?id=');
   });
 });
 

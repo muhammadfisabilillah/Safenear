@@ -92,6 +92,7 @@
 - **Keputusan:** `npm run build` = `next build` → `scripts/copy-data.mjs` (salin `data/bundles` & `data/profiles` ke `out/`) → `scripts/build-sw.mjs` (Workbox generateSW). SW precache app shell + runtime cache (tile, Overpass, Nominatim, emergency numbers).
 - **Alternatif:** (a) `next-pwa` (plugin, lebih terikat Next); (b) tulis SW manual (effort, rawan salah).
 - **Konsekuensi:** SW ikut ke static export; header keamanan (CSP/dll) tetap harus diatur di CDN (Cloudflare `_headers`) karena export statis mengabaikan `headers()`.
+- **Revisi (19 Nov 2026):** navigasi offline ke halaman statis ber-query (mis. `/place/?id=...`) sebelumnya jatuh ke `navigateFallback` (halaman onboarding) karena query ikut dicocokkan. Ditambahkan `ignoreURLParametersMatching: [/.*/]` + `directoryIndex: 'index.html'`. Terbukti di browser: `/nearby/` -> klik tempat -> `/place/?id=...` kini memuat halaman detail yang benar.
 
 ---
 

@@ -47,7 +47,7 @@ function buildPopupNode(poi: Poi): HTMLElement {
   }
 
   const link = document.createElement('a');
-  link.href = `/place/${encodeURIComponent(poi.id)}`;
+  link.href = `/place?id=${encodeURIComponent(poi.id)}`;
   link.className = 'mt-1 inline-block text-xs font-medium text-primary underline';
   link.textContent = 'Detail →';
   box.appendChild(link);

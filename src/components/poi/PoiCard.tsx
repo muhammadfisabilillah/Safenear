@@ -19,7 +19,7 @@ export function PoiCard({ poi, rank }: PoiCardProps) {
   return (
     <li className="border-border bg-card">
       <Link
-        href={`/place/${encodeURIComponent(poi.id)}`}
+        href={`/place?id=${encodeURIComponent(poi.id)}`}
         className="border-border touch-target flex items-start gap-3 border-b p-3 no-underline"
       >
         <span

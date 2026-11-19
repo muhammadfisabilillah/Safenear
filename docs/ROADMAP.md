@@ -69,10 +69,11 @@ Legenda status: `[ ]` belum · `[~]` progres · `[x]` selesai + terbukti
 
 ### T7 — Detail tempat
 
-- [ ] `/place/[id]`: nama, alamat, telepon (`tel:`), jam buka, url, kategori.
-- [ ] Panel sumber: `source`, `verifiedAt`, `sourceUrl`, peringatan "verifikasi dulu".
-- [ ] Tombol: Navigasi, Telepon, Bagikan, "Laporkan tempat salah".
+- [x] `/place?id=...`: nama, alamat, telepon (`tel:`), jam buka, url, kategori.
+- [x] Panel sumber: `source`, `verifiedAt`, `sourceUrl`, peringatan "verifikasi dulu".
+- [x] Tombol: Navigasi, Telepon, Bagikan, "Lapor tempat salah".
 - **AC:** field kosong -> "tidak tersedia"; navigasi membuka URL benar; tombol koreksi mencatat (lokal, fase 2 publish).
+- **Bukti (19 Nov 2026):** halaman detail tampil; field kosong -> "not available"; tombol Navigate -> `https://www.google.com/maps/dir/?api=1&destination=29.7649432,-95.3706247&travelmode=walking&dir_action=navigate`; koreksi tersimpan di IndexedDB (`corrections`: reason `wrong-info`, note, `status: pending`).
 
 ### T8 — Navigasi
 
