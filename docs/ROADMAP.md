@@ -63,8 +63,9 @@ Legenda status: `[ ]` belum · `[~]` progres · `[x]` selesai + terbukti
 
 - [x] `src/lib/poi/repository.ts`: coba bundle lokal -> fallback Overpass -> error state.
 - [x] nearest 5 (haversine + sort, lihat ADR-009) + jarak & estimasi waktu.
-- [ ] Halaman `/nearby?category=...` + `PoiList`.
+- [x] Halaman `/nearby?category=...` + `PoiList`.
 - **AC:** hasil <2 dtk online, <1 dtk offline; urutan terdekat benar (uji dengan titik known); data kosong -> pesan + tombol unduh.
+- **Bukti (19 Nov 2026):** UI headless menampilkan 5 polisi terdekat Houston: 511 m, 551 m, 1,2 km, 1,2 km, 1,3 km (urut benar) + estimasi jalan/kendaraan; label sumber bundle lokal.
 
 ### T7 — Detail tempat
 

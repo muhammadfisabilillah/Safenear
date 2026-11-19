@@ -84,11 +84,16 @@
   "nearby": {
     "title": "Nearest {{category}}",
     "empty": "No {{category}} found in this area.",
+    "emptyGeneric": "No places found in this area.",
     "downloadHint": "Download this area for offline access.",
     "distanceAway": "{{distance}} away",
     "etaWalk": "~{{time}} walk",
     "etaDrive": "~{{time}} drive",
-    "openDetails": "Open details"
+    "openDetails": "Open details",
+    "fromGps": "from your location",
+    "fromCity": "from city center",
+    "sourceBundle": "source: local bundle data (OSM)",
+    "sourceOverpass": "source: live data (online)"
   },
   "place": {
     "address": "Address",

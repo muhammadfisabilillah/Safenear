@@ -84,11 +84,16 @@
   "nearby": {
     "title": "{{category}} Terdekat",
     "empty": "Tidak ada {{category}} di area ini.",
+    "emptyGeneric": "Tidak ada tempat di area ini.",
     "downloadHint": "Unduh area ini untuk akses offline.",
     "distanceAway": "{{distance}} jauhnya",
     "etaWalk": "~{{time}} jalan kaki",
     "etaDrive": "~{{time}} kendaraan",
-    "openDetails": "Buka detail"
+    "openDetails": "Buka detail",
+    "fromGps": "dari lokasi Anda",
+    "fromCity": "dari pusat kota",
+    "sourceBundle": "sumber: data bundle lokal (OSM)",
+    "sourceOverpass": "sumber: data langsung (online)"
   },
   "place": {
     "address": "Alamat",
