@@ -138,6 +138,7 @@
     "now": "Now",
     "location": "Location",
     "useCurrent": "Use current location",
+    "locationLabel": "Location label (optional)",
     "description": "What happened?",
     "descriptionPlaceholder": "Describe briefly...",
     "witnesses": "Witnesses (optional)",
@@ -168,7 +169,12 @@
     "evidenceList": "Evidence",
     "witnesses": "Witnesses",
     "noWitnesses": "No witnesses",
-    "noEvidence": "No evidence attached"
+    "noEvidence": "No evidence attached",
+    "pdfReady": "PDF downloaded (EN+ID + hash).",
+    "copied": "Report text copied.",
+    "list": "My reports",
+    "empty": "No reports yet.",
+    "newReport": "Create new report"
   },
   "offline": {
     "title": "Offline & Downloads",

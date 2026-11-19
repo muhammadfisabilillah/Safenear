@@ -105,6 +105,15 @@
 
 ---
 
+## ADR-013 — PDF laporan: `renderToBuffer` (Node) vs `pdf().toBlob()` (browser)
+
+- **Konteks:** `renderReportPdf()` awal memakai `renderToBuffer` dari `@react-pdf/renderer`. Di Node (unit test) berhasil, tapi di browser ekspor PDF gagal diam-diam.
+- **Keputusan:** dua fungsi terpisah di `src/lib/report/pdf.tsx`: `renderReportPdf()` (Node/SSR, `renderToBuffer`) untuk test; `renderReportPdfBrowser()` (UI, `pdf(<Doc/>).toBlob()`). Hash dihitung terpisah dari render (ADR-011), lalu ditempel ke laporan via `attachPdfHash`.
+- **Alternatif:** satukan dengan `pdf().toBlob()` di semua lingkungan (belum terbukti di Node).
+- **Konsekuensi:** UI memakai jalur browser yang benar; test tetap memakai jalur Node yang cepat. Terbukti: ekspor PDF di browser menyimpan `pdfHash` dan mengunduh berkas.
+
+---
+
 ## ADR-012 — Offline: bundle POI eksplisit, tile via SW cache
 
 - **Konteks:** AC T12 menyebut "unduh area (tile + POI + profil)". Mengunduh tile vector OpenFreeMap secara eksplisit butuh enumerasi tile + batas ≤3.000 tile/≤50 MB/≤4 request paralel, dan berisiko salah konfigurasi URL.

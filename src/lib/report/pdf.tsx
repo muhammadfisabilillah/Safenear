@@ -1,7 +1,7 @@
 // SAFE NEAR — render PDF laporan (EN + ID) via @react-pdf/renderer (client-side).
 // Tidak ada data yang dikirim ke server: render terjadi di perangkat user.
 
-import { Document, Page, StyleSheet, Text, View } from '@react-pdf/renderer';
+import { Document, Page, StyleSheet, Text, View, pdf } from '@react-pdf/renderer';
 import type { IncidentReport } from '@/lib/poi/types';
 import { buildReportContent, type ReportContent } from './content';
 import { hashReport } from './hash';
@@ -85,10 +85,27 @@ export interface RenderedPdf {
   hash: string;
 }
 
-/** Render laporan menjadi buffer PDF + hash konten. */
+export interface RenderedPdfBlob {
+  blob: Blob;
+  hash: string;
+}
+
+/** Render laporan menjadi buffer PDF + hash konten (Node/SSR). */
 export async function renderReportPdf(report: IncidentReport): Promise<RenderedPdf> {
   const hash = await hashReport(report);
   const content = buildReportContent(report, hash);
   const buffer = await renderToBuffer(<ReportPdfDocument content={content} />);
   return { buffer, hash };
+}
+
+/**
+ * Render laporan menjadi Blob PDF + hash konten (BROWSER).
+ * `renderToBuffer` tidak tersedia di bundle browser @react-pdf/renderer v4,
+ * sehingga di sini dipakai API `pdf(...).toBlob()`.
+ */
+export async function renderReportPdfBrowser(report: IncidentReport): Promise<RenderedPdfBlob> {
+  const hash = await hashReport(report);
+  const content = buildReportContent(report, hash);
+  const blob = await pdf(<ReportPdfDocument content={content} />).toBlob();
+  return { blob, hash };
 }

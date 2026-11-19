@@ -105,6 +105,8 @@ SAFE NEAR **tidak punya backend server**. Semua logika jalan di browser.
 - `next build` gagal bila `data/bundles` kosong? Tidak — `copy-data.mjs` membuat folder `out/bundles`.
 - PDF render diuji di Node (bukan jsdom): `renderToBuffer` dari `@react-pdf/renderer`.
 - **Belum ada halaman selain `/`.** Semua AC frontend menunggu T5+.
+- **Uji browser (penting):** service worker lama menjebak navigasi (`navigateFallback` → halaman onboarding → redirect `/map`). Sebelum menguji route baru di browser, jalankan: unregister semua SW + `caches.delete` semua, baru buka route. Prefs/laporan kadang hilang antar call browser headless — seed prefs lewat IndexedDB bila perlu, dan uji alur end-to-end dalam satu call.
+- **Port 3000** dipakai proyek lain; server statis uji di **3111** (`npx serve out -l 3111`).
 
 ---
 

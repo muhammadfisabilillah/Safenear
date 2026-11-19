@@ -97,15 +97,17 @@ Legenda status: `[ ]` belum · `[~]` progres · `[x]` selesai + terbukti
 
 ### T10 — Form lapor
 
-- [ ] `/report/new`: kategori, waktu (default now), lokasi (GPS + edit), deskripsi, saksi (opsional), bukti (foto).
-- [ ] zod validation; simpan `IncidentReport` di IndexedDB; bukti di OPFS (maks ukuran wajar).
+- [x] `/report/new`: kategori, waktu (default now), lokasi (GPS + edit), deskripsi, saksi (opsional), bukti (foto).
+- [x] zod validation; simpan `IncidentReport` di IndexedDB; bukti di evidence store (maks 5 MB).
 - **AC:** laporan tersimpan & bisa dibuka lagi; validasi menolak input tak lengkap; bukti tidak dikirim ke jaringan.
+- **Bukti (19 Nov 2026):** form tampil, submit -> redirect `/report?id=...`, laporan muncul di daftar; test validasi (deskripsi kosong ditolak).
 
 ### T11 — PDF
 
-- [ ] `@react-pdf/renderer`: PDF EN+ID (identitas opsional, kronologi, lokasi, deskripsi, saksi, daftar bukti, hash SHA-256, timestamp, disclaimer).
-- [ ] Tombol bagikan (Web Share API) / unduh.
+- [x] `@react-pdf/renderer`: PDF EN+ID (identitas opsional, kronologi, lokasi, deskripsi, saksi, daftar bukti, hash SHA-256, timestamp, disclaimer).
+- [x] Tombol bagikan (Web Share API) / unduh.
 - **AC:** PDF terbuka; hash konsisten dengan isi; EN & ID sama-sama ada.
+- **Bukti (19 Nov 2026):** di browser, klik "Export PDF" -> pesan "PDF downloaded (EN+ID + hash)" + `pdfHash` tersimpan (`849b5485…cf996`). Node: `renderToBuffer` menghasilkan buffer berawalan `%PDF-`; hash deterministik.
 
 ### T12 — Offline penuh
 

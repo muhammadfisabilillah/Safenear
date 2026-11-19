@@ -138,6 +138,7 @@
     "now": "Sekarang",
     "location": "Lokasi",
     "useCurrent": "Gunakan lokasi saat ini",
+    "locationLabel": "Label lokasi (opsional)",
     "description": "Apa yang terjadi?",
     "descriptionPlaceholder": "Deskripsikan singkat...",
     "witnesses": "Saksi (opsional)",
@@ -168,7 +169,12 @@
     "evidenceList": "Bukti",
     "witnesses": "Saksi",
     "noWitnesses": "Tidak ada saksi",
-    "noEvidence": "Tidak ada bukti"
+    "noEvidence": "Tidak ada bukti",
+    "pdfReady": "PDF diunduh (EN+ID + hash).",
+    "copied": "Teks laporan tersalin.",
+    "list": "Laporan saya",
+    "empty": "Belum ada laporan.",
+    "newReport": "Buat laporan baru"
   },
   "offline": {
     "title": "Offline & Unduhan",
