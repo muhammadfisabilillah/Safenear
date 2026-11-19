@@ -120,7 +120,8 @@
     "other": "Lainnya",
     "note": "Catatan (opsional)",
     "notePlaceholder": "Contoh: kantor ini sudah pindah…",
-    "correctionSaved": "Koreksi tersimpan di perangkat. (Publikasi ke data sumber = fase 2.)"
+    "correctionSaved": "Koreksi tersimpan di perangkat. (Publikasi ke data sumber = fase 2.)",
+    "offlineNote": "Mode offline: navigasi turn-by-turn butuh internet. Data tempat, telepon, kartu hak, dan laporan tetap bisa dipakai."
   },
   "rights": {
     "title": "Ketahui Hak Anda",

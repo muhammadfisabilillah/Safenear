@@ -12,6 +12,7 @@ import { loadLocalOrRemoteBundle } from '@/lib/poi/dataSource';
 import { buildNavigationUrl } from '@/lib/routing/mapsUrl';
 import { PlaceDetail } from '@/components/poi/PlaceDetail';
 import { Alert, AlertDescription } from '@/components/ui/alert';
+import { OfflineNote } from '@/components/layout/OfflineNote';
 
 function PlacePage() {
   const { t } = useTranslation();
@@ -117,6 +118,7 @@ function PlacePage() {
         sourceUrl={poi.sourceUrl}
         onSaveCorrection={handleSaveCorrection}
       />
+      <OfflineNote />
     </div>
   );
 }

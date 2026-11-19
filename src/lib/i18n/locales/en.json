@@ -120,7 +120,8 @@
     "other": "Other",
     "note": "Note (optional)",
     "notePlaceholder": "Example: this office has moved…",
-    "correctionSaved": "Correction saved on device. (Publishing to source data = phase 2.)"
+    "correctionSaved": "Correction saved on device. (Publishing to source data = phase 2.)",
+    "offlineNote": "Offline mode: turn-by-turn navigation needs internet. Places, phone numbers, rights cards, and reports still work."
   },
   "rights": {
     "title": "Know Your Rights",

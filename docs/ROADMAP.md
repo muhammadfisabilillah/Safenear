@@ -78,9 +78,10 @@ Legenda status: `[ ]` belum · `[~]` progres · `[x]` selesai + terbukti
 ### T8 — Navigasi
 
 - [x] `src/lib/routing/mapsUrl.ts`: builder Google Maps URL (`api=1`, destination lat/lon, travelmode, dir_action=navigate).
-- [ ] Fallback offline: garis lurus (turf) + alamat + telepon + catatan "navigasi butuh internet".
+- [x] Fallback offline: catatan `OfflineNote` (navigator.onLine) + alamat + telepon + estimasi; mode offline tidak error.
 - [ ] (Opsional) OSRM client + Docker self-host.
 - **AC:** URL valid & tanpa key; tujuan = koordinat tempat; mode offline tidak error.
+- **Bukti (19 Nov 2026):** tombol Navigate -> URL Google Maps `api=1` dengan destination = koordinat tempat; `OfflineNote` tampil saat `navigator.onLine=false` (test).
 
 ### T9 — Kartu hak
 

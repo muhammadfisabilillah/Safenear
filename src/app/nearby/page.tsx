@@ -13,6 +13,7 @@ import { type NearbyPoi, type LatLon } from '@/lib/geo/geo';
 import { getCurrentPosition } from '@/lib/map/geolocation';
 import { PoiList } from '@/components/poi/PoiList';
 import { Alert, AlertDescription } from '@/components/ui/alert';
+import { OfflineNote } from '@/components/layout/OfflineNote';
 
 const DEFAULT_LIMIT = 5;
 
@@ -148,6 +149,8 @@ function NearbyPage() {
           </Alert>
         </div>
       ) : null}
+
+      <OfflineNote />
 
       {loading ? (
         <p className="text-muted-foreground py-8 text-center text-sm">{t('common.loading')}</p>
