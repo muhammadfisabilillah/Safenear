@@ -5,24 +5,25 @@
 
 ---
 
-## 1. Status saat ini (19 Nov 2026, sesi malam)
+## 1. Status saat ini (19 Nov 2026, sesi malam — AKHIR SESI)
 
-| Task                      | Status            | Bukti                                                                                                  |
-| ------------------------- | ----------------- | ------------------------------------------------------------------------------------------------------ |
-| T0 Setup repo & tooling   | ✅ Selesai        | build hijau, lint 0 error, format (Prettier)                                                           |
-| T1 PWA shell              | ✅ Sebagian       | manifest, icons (192/512/maskable), Workbox SW, i18n. **Header/BottomNav/Banner → T5**                 |
-| T2 Skema data + validasi  | ✅ Selesai        | `types.ts`, `schema.ts` (zod), `normalize.ts`, profil ID/PH/BD/NP                                      |
-| T3 Ingest POI             | ✅ Selesai        | `data/bundles/US-houston.json` — **47 POI** (police 15, hospital 12, fire 14, courthouse 5, embassy 1) |
-| T4 Onboarding + prefs     | ✅ Sebagian       | `/` + IndexedDB store. Redirect ke `/settings` → T13                                                   |
-| T6 Repository + nearest   | ✅ Logika selesai | `repository.ts`, `geo.ts`, `bundle.ts`, `overpass.ts`. **UI `/nearby` → T6 sisa**                      |
-| T8 Navigasi               | ✅ Logika selesai | `routing/mapsUrl.ts` (Google URL). **UI + fallback → T8 sisa**                                         |
-| T10 Form lapor            | ✅ Logika selesai | `report/store.ts`, `report/content.ts`                                                                 |
-| T11 PDF                   | ✅ Logika selesai | `report/pdf.tsx` + `hash.ts` (teruji render PDF nyata)                                                 |
-| T12 Offline               | ✅ Logika selesai | `offline/manager.ts` + SW runtime cache (ADR-012)                                                      |
-| T7 Detail, T9 Hak, T13 UI | ⬜ Belum          | —                                                                                                      |
+| Bagian                         | Status                | Catatan                                                        |
+| ------------------------------ | --------------------- | -------------------------------------------------------------- |
+| Fondasi/backend (T0–T4, B1–B7) | ✅ Selesai            | tooling, PWA, bundle 47 POI, geo/routing/report, offline logic |
+| Peta (T5)                      | ✅ Selesai + terbukti | peta Houston, marker, chips filter (47→15)                     |
+| Terdekat (T6)                  | ✅ Selesai + terbukti | 5 terdekat urut benar (511 m … 1,3 km)                         |
+| Detail (T7)                    | ✅ Selesai + terbukti | navigasi Google URL, koreksi tersimpan lokal                   |
+| Navigasi (T8)                  | ✅ Selesai            | URL api=1 + catatan fallback offline                           |
+| Lapor (T10, T11)               | ✅ Selesai + terbukti | form → detail → PDF EN+ID + hash (`849b5485…`)                 |
+| Kartu hak (T9)                 | ✅ Selesai + terbukti | Pasal 36 + hotline Peduli WNI                                  |
+| Offline (T12)                  | ✅ Sebagian           | unduh area + status storage + hapus; uji mode pesawat belum    |
+| Pengaturan/About (T13)         | ✅ Sebagian           | halaman & atribusi tampil; uji hapus semua data belum          |
+| Uji HP / a11y / demo (T14–T17) | ⬜ Belum              | -                                                              |
 
-**Test:** 143 lulus · **lint:** bersih · **build:** hijau + `out/sw.js`.
-**Backend/fondasi = SELESAI.** Sisa: UI/frontend.
+**Test:** 234 lulus · **lint:** bersih · **build:** hijau + `out/sw.js`.
+**Halaman ada:** `/`, `/map`, `/nearby`, `/place`, `/report`, `/report/new`, `/rights`, `/offline`, `/settings`, `/about`.
+
+**Sisa yang belum:** uji mode pesawat, uji hapus semua data, uji HP nyata, aksesibilitas/keamanan, video demo 60 detik, README/slide, submit Devpost.
 
 ---
 
